@@ -1,0 +1,66 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3 bg-dark">
+          <div class="card-body p-4">
+            <h4 class="text-center my-3 pb-3 text-white">Product List</h4>
+
+            <div class="dropdown mb-4 pb-2">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                All
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+
+            @if (products == null) {
+            <div class="alert alert-primary" role="alert">Loading.....</div>
+            } @else if(products.length == 0) {
+            <div class="alert alert-primary" role="alert">
+              No Products found
+            </div>
+            } @else {
+            <table class="table mb-4 table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Discription</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for(product of products; track product._id) {
+                <tr>
+                  <th scope="row">{{ $index }}</th>
+                  <td>{{ product.title }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>{{ product.description }}</td>
+                  <td>
+                    <button type="submit" class="btn btn-success ms-1">
+                      <a routerLink="/details/{{ product._id }}">Details</a>
+                    </button>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
